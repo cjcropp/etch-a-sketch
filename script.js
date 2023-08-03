@@ -1,28 +1,47 @@
-const gridContainer = document.querySelector("#gridContainer");
-const grid = {rows:10,columns:10}
-const total = grid.rows * grid.columns
+let slider = document.getElementById("sizeRange");
+let output = document.getElementById("demo")
+output.textContent = slider.value;
 
-createGrid(total);
+let gridContainer = document.querySelector("#gridContainer");
+/*let grid = slider.value
+let total = grid * grid*/
 
-function createGrid(total) {
+function createGrid() {
+    let grid = slider.value
+    let total = grid * grid
     for (let i = 0; i < total; i++) {
         const gridItem = document.createElement('div');
         gridContainer.append(gridItem);
-        gridItem.textContent = `${i+1}`
         gridItem.classList.add('cell');
+        gridItem.setAttribute("id", i + 1)
+        gridItem.addEventListener("mouseover", () => gridItem.style.setProperty(`background-color`, `red`));
+        gridItem.style.height = "auto";
+        gridItem.style.width = "auto";
     };
-    gridContainer.style.setProperty(`grid-template-columns`, `repeat(${grid.columns}, 1fr)`)
+    gridContainer.style.setProperty(`grid-template-columns`, `repeat(${grid}, 1fr)`);
+    
 };
 
+createGrid();
 
+let cell = document.getElementsByClassName('cell');
+console.log(cell);
 
-/*const gridContainer = document.getElementById("gridContainer");*/
-
-/*function makeGrid(rows, columns) {
-    for (i = 0; i < (rows * columns); i++) {
-        let gridItem = document.createElement("div");
-        gridContainer.appendChild(gridItem).className = "cell";
-    };
+function addColor () {
+    cell.style.setProperty(`color`, `red`);
 };
 
-makeGrid(3, 3);*/
+/*while (gridContainer.lastChild) {
+    gridContainer.lastChild.remove();
+};*/
+
+slider.oninput = function() {
+    output.textContent = this.value;
+    /*let grid = slider.value;
+    let total = grid * grid;*/
+    while (gridContainer.lastChild) {
+        gridContainer.lastChild.remove();
+    };
+    createGrid();
+};
+

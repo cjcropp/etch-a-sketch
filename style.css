@@ -1,5 +1,5 @@
 .cell {
-    border: 1px solid black;
+    border: none;
     text-align: center;
 }
 
@@ -7,4 +7,44 @@
     display: grid;
     width: 80vw;
     margin: auto;
+    height: 500px;
+    border: 2px solid grey;
+}
+
+.totalSlideContainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 200px;
+    height: 10px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: .5;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 5px;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: black;
+    border-radius: 10px;
+    cursor: pointer;
+}   
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #04AA6D;
+    cursor: pointer;
 }
